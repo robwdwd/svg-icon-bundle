@@ -138,15 +138,6 @@ icon file by looking up it's location in the default webpack manifest.
 The bundle provides a twig function and a service to load and get the HTML
 for SVG icons.
 
-### Twig
-
-The SVGIcon bundle provides a twig function to inline SVG icon HTML markup
-into templates. The function takes the icon package name and the name of
-the icon (filename without the .svg extension). It allows for optional attributes
-and styles to be applied to the icon.
-
-    svg_icon('<icon package>', '<icon name>', {[attributes]}, {[styles]})
-
 ### Default attributes and styles.
 
 By default the bundle sets width and height to 16 and the viewBox to 0 0 16 16
@@ -155,6 +146,15 @@ have these attributes or you have not overwritten them. The bundle takes the
 follow precedence order: Default->SVG File->Overwrite. Overwrite will always be
 used over the attributes/styles in the SVG file and the defaults. SVG File always
 overwrites the default.
+
+### Twig
+
+The SVGIcon bundle provides a twig function to inline SVG icon HTML markup
+into templates. The function takes the icon package name and the name of
+the icon (filename without the .svg extension). It allows for optional attributes
+and styles to be applied to the icon.
+
+    svg_icon('<icon package>', '<icon name>', {[attributes]}, {[styles]})
 
 #### Simple use
 
@@ -179,7 +179,7 @@ a style automatically. Any attribute which should be a style will be converted.
 
     {{ svg_icon('mdi', 'eye-outline', {'width': 18, 'height': 18, 'class':'svgicon', 'fill':'red'}) }}
 
-### As a services
+### As a service
 
 You can use the SVGIcon service in your controllers or services to manually
 generate SVGIcons.
