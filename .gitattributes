@@ -1,0 +1,14 @@
+* text=auto
+
+*.tpl text eol=lf
+*.twig text eol=lf
+*.php text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+
+.php_cs.dist eol=lf
+
+# Denote all files that are truly binary and should not be modified.
+*.png binary
+*.jpg binary

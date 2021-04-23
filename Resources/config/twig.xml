@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services
+        http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="svg_icon.twig.extension.svg_icon_extension.class">Robwdwd\SVGIconBundle\Twig\Extension\SVGIconExtension</parameter>
+        <parameter key="svg_icon.twig.extension.svg_icon_runtime.class">Robwdwd\SVGIconBundle\Twig\Extension\SVGIconRuntime</parameter>
+    </parameters>
+
+    <services>
+
+        <service id="svg_icon.twig.extension.svg_icon_extension" class="%svg_icon.twig.extension.svg_icon_extension.class%" public="false">
+            <tag name="twig.extension"/>
+        </service>
+
+        <service id="svg_icon.twig.extension.svg_icon_runtime" class="%svg_icon.twig.extension.svg_icon_runtime.class%" public="false">
+            <tag name="twig.runtime"/>
+            <argument type="service" id="svg_icon.svg_icon"/>
+        </service>
+
+        <service id="%svg_icon.twig.extension.svg_icon_extension.class%" alias="svg_icon.twig.extension.svg_icon_extension"/>
+        <service id="%svg_icon.twig.extension.svg_icon_runtime.class%" alias="svg_icon.twig.extension.svg_icon_runtime"/>
+
+    </services>
+</container>

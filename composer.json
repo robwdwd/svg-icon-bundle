@@ -1,0 +1,37 @@
+{
+    "name": "robwdwd/svg-icon-bundle",
+    "type": "symfony-bundle",
+    "description": "SVG Icon bundle for inserting SVG HTML Markup from SVG Icon files.",
+    "keywords": [
+        "svg",
+        "icon",
+        "symfony",
+        "mdi",
+        "materialdesign icons",
+        "bootstrap icons"
+    ],
+    "homepage": "https://github.com/robwdwd/svg-icon-bundle",
+    "license": "Apache-2.0",
+    "authors": [{
+        "name": "Rob Woodward",
+        "homepage": "https://github.com/robwdwd",
+        "email": "rob@emailplus.org",
+        "role": "Author"
+    }],
+    "autoload": {
+        "psr-4": {
+            "Robwdwd\\SVGIconBundle\\": ""
+        }
+    },
+    "require": {
+        "php": "^7.2",
+        "meyfa/php-svg": "^0.11.0",
+        "symfony/config": "^4.4 || ^5.0 || ^5.1 || ^5.2",
+        "symfony/dependency-injection": "^4.4 || ^5.0 || ^5.1 || ^5.2",
+        "symfony/framework-bundle": "^4.4 || ^5.0 || ^5.1 || ^5.2",
+        "symfony/twig-bundle": "^4.4 || ^5.0 || ^5.1 || ^5.2"
+    },
+    "require-dev": {
+        "symfony/templating": "^4.4 || ^5.0 || ^5.1 || ^5.2"
+    }
+}
