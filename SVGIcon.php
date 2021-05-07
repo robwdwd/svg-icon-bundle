@@ -17,6 +17,7 @@
 
 namespace Robwdwd\SVGIconBundle;
 
+use Robwdwd\SVGIconBundle\Exception\IconNotFoundException;
 use SVG\Reading\AttributeRegistry;
 use SVG\SVG;
 use Symfony\Component\Asset\Packages;
@@ -92,6 +93,8 @@ class SVGIcon
 
             $this->setAttributes($iconAttr);
             $this->setStyles($iconStyles);
+        } else {
+            throw new IconNotFoundException($package, $name, $filename);
         }
     }
 
