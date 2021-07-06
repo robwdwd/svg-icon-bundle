@@ -55,8 +55,6 @@ class SVGIcon
      * @param string $name       icon name (filename without extension)
      * @param array  $attributes optional attributes to add to the SVG tag
      * @param array  $styles     optional styles to add to the SVG tag
-     *
-     * @return null
      */
     public function loadSVG($package, $name, $attributes = [], $styles = [])
     {
@@ -116,8 +114,6 @@ class SVGIcon
      * Set additional styles on the SVG Icon.
      *
      * @param array $styles Additional styles to add to the svg tag
-     *
-     * @return null
      */
     public function setStyles(array $styles)
     {
@@ -134,8 +130,6 @@ class SVGIcon
      * Set additional attributes on the SVG Icon.
      *
      * @param array $attributes Additional attributes to add to the svg tag
-     *
-     * @return null
      */
     public function setAttributes(array $attributes)
     {

@@ -13,7 +13,7 @@ return $config->setRules([
     '@Symfony' => true,
     'array_indentation' => true,
     'array_syntax' => ['syntax' => 'short'],
-    'method_argument_space' => ['on_multiline' => 'ensure_fully_multiline'],
+    'method_argument_space' => ['on_multiline' => 'ensure_single_line'],
     'no_useless_else' => true,
     'no_useless_return' => true,
     'phpdoc_add_missing_param_annotation' => ['only_untyped' => false],
