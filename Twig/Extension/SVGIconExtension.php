@@ -29,6 +29,8 @@ class SVGIconExtension extends AbstractExtension
 {
     /**
      * {@inheritdoc}
+     *
+     * @return array
      */
     public function getFunctions()
     {
