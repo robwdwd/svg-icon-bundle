@@ -12,19 +12,19 @@ with the twig function or by using SVGIcon as a service.
 
 SVGIcon supports the following:
 
--   Twig function for easy output of inline HTML in templates.
--   Reads SVG Icon files (from bootstrap-icons, material design icons.)
--   Overwrite styles and tags (width, height, etc) and provides useful
+- Twig function for easy output of inline HTML in templates.
+- Reads SVG Icon files (from bootstrap-icons, material design icons.)
+- Overwrite styles and tags (width, height, etc) and provides useful
     defaults if not found in SVG Icon.
--   Support webpack encore for icons in public build location using
+- Support webpack encore for icons in public build location using
     manifest file.
 
 ## Requirements
 
 SVGIcon PHP Class requires the following:
 
--   PHP 7.2 or higher
--   meyfa/php-svg
+- PHP 7.4 or higher
+- meyfa/php-svg
 
 ## Installation
 
@@ -37,7 +37,7 @@ of the Composer documentation.
 Open a command console, enter your project directory and execute:
 
 ```console
-$ composer require robwdwd/svg-icon-bundle
+composer require robwdwd/svg-icon-bundle
 ```
 
 ### Applications that don't use Symfony Flex
@@ -48,7 +48,7 @@ Open a command console, enter your project directory and execute the
 following command to download the latest stable version of this bundle:
 
 ```console
-$ composer require robwdwd/svg-icon-bundle
+composer require robwdwd/svg-icon-bundle
 ```
 
 #### Step 2: Enable the Bundle
@@ -79,6 +79,8 @@ svg_icon:
         mdi:
             base_dir: '%kernel.project_dir%/public'
             icon_dir: 'build/icons/mdi'
+            width: 24
+            height: 24
             webpack: true
         bsi:
             base_dir: '%kernel.project_dir%'
@@ -138,14 +140,20 @@ icon file by looking up it's location in the default webpack manifest.
 The bundle provides a twig function and a service to load and get the HTML
 for SVG icons.
 
-### Default attributes and styles.
+### Default attributes and styles
 
 By default the bundle sets width and height to 16 and the viewBox to 0 0 16 16
 and fill to currentColor. These will be used if the SVG icon does not already
-have these attributes or you have not overwritten them. The bundle takes the
-follow precedence order: Default->SVG File->Overwrite. Overwrite will always be
-used over the attributes/styles in the SVG file and the defaults. SVG File always
-overwrites the default.
+have these attributes and you have not overridden them in the twig call.
+
+Attributes set in the twig call will always beused over the attributes/styles
+in the SVG file and the defaults. SVG File always overrides the default.
+
+Width and height are optional configuration for icon packages and will override
+the bundle default, the icon width and height attributes but not any width and
+height in the template call.
+
+The bundle takes the follow precedence order: Default->SVG File->Dimensions->Twig Call.
 
 ### Twig
 
@@ -154,7 +162,9 @@ into templates. The function takes the icon package name and the name of
 the icon (filename without the .svg extension). It allows for optional attributes
 and styles to be applied to the icon.
 
+```twig
     svg_icon('<icon package>', '<icon name>', {[attributes]}, {[styles]})
+```
 
 #### Simple use
 
@@ -162,22 +172,30 @@ To embed to Material design pencil icon into your html use the following. Any
 attributes and styles from the icon will be used as well as the defaults if the
 icon does not include them.
 
+```twig
     {{ svg_icon('mdi', 'pencil') }}
+```
 
 #### Advanced use
 
 To overwrite the width and height attributes.
 
+```twig
     {{ svg_icon('mdi', 'eye-outline', {'width': 18, 'height': 18}) }}
+```
 
 Set the width and height and class and set the fill colour to red.
 
+```twig
     {{ svg_icon('mdi', 'eye-outline', {'width': 18, 'height': 18, 'class':'svgicon'}, {'fill':'red'}) }}
+```
 
 You can also set the fill colour as an attribute which will get converted into
 a style automatically. Any attribute which should be a style will be converted.
 
+```twig
     {{ svg_icon('mdi', 'eye-outline', {'width': 18, 'height': 18, 'class':'svgicon', 'fill':'red'}) }}
+```
 
 ### As a service
 

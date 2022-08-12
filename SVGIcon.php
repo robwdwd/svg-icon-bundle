@@ -69,6 +69,18 @@ class SVGIcon
 
         $icon = $iconDir.'/'.$name.'.svg';
 
+        // If config includes user override width and height
+        //
+        $dimensions = [];
+
+        if (isset($this->icons[$package]['width'])) {
+            $dimensions['width'] = $this->icons[$package]['width'];
+        }
+
+        if (isset($this->icons[$package]['height'])) {
+            $dimensions['height'] = $this->icons[$package]['height'];
+        }
+
         if (true === $this->icons[$package]['webpack']) {
             // getUrl returns the public URL of the asset, we only want the filename
             //
@@ -86,7 +98,7 @@ class SVGIcon
             // and finally merge in these with defaults and user overides.
             //
             $document = $this->svgImage->getDocument();
-            $iconAttr = array_merge($this->attributes, $document->getSerializableAttributes(), $attributes);
+            $iconAttr = array_merge($this->attributes, $document->getSerializableAttributes(), $dimensions, $attributes);
             $iconStyles = array_merge($this->styles, $document->getSerializableStyles(), $styles);
 
             $this->setAttributes($iconAttr);
