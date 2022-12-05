@@ -17,6 +17,7 @@
 
 namespace Robwdwd\SVGIconBundle\Twig\Extension;
 
+use Robwdwd\SVGIconBundle\Exception\IconNotFoundException;
 use Robwdwd\SVGIconBundle\SVGIcon;
 use Twig\Extension\RuntimeExtensionInterface;
 
@@ -49,7 +50,13 @@ class SVGIconRuntime implements RuntimeExtensionInterface
      */
     public function inLineHTML(string $package, string $iconName, $attributes = [], $styles = [])
     {
-        $this->svgIcon->loadSVG($package, $iconName, $attributes, $styles);
+        try {
+            $this->svgIcon->loadSVG($package, $iconName, $attributes, $styles);
+        } catch (IconNotFoundException $e) {
+            return '<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M13 14H11V9H13M13 18H11V16H13M1 21H23L12 2L1 21Z" />
+                    </svg>';
+        }
 
         return $this->svgIcon->toXMLString();
     }
