@@ -25,7 +25,7 @@
     },
     "require": {
         "php": ">=7.4",
-        "meyfa/php-svg": "^0.12",
+        "meyfa/php-svg": "^0.14",
         "symfony/config": "^5.4 || ^6.0 || ^6.1 || ^6.2",
         "symfony/dependency-injection": "^5.4 || ^6.0 ||^6.1 || ^6.2",
         "symfony/framework-bundle": "^5.4 || ^6.0 ||^6.1 || ^6.2",
