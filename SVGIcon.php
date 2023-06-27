@@ -40,7 +40,7 @@ class SVGIcon
      * @param Packages $packages Symfony asset package service
      * @param array    $icons    Icons configuration array
      */
-    public function __construct(private Packages $packages, private $icons)
+    public function __construct(private readonly Packages $packages, private $icons)
     {
     }
 
