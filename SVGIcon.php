@@ -1,19 +1,19 @@
 <?php
 /**
-*     Copyright 2021 Robert Woodward.
+ *     Copyright 2021 Robert Woodward.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
  *    You may obtain a copy of the License at
-
+ *
  *        http://www.apache.org/licenses/LICENSE-2.0
-
+ *
  *    Unless required by applicable law or agreed to in writing, software
  *    distributed under the License is distributed on an "AS IS" BASIS,
  *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
-*/
+ */
 
 namespace Robwdwd\SVGIconBundle;
 
@@ -29,23 +29,19 @@ use Symfony\Component\Asset\Packages;
  */
 class SVGIcon
 {
-    private $packages;
-    private $icons;
-    private $svgImage;
+    private ?SVG $svgImage = null;
 
     // Set up some default attributes
     //
-    private $attributes = ['width' => 16, 'height' => 16, 'viewBox' => '0 0 16 16'];
-    private $styles = ['fill' => 'currentColor'];
+    private array $attributes = ['width' => 16, 'height' => 16, 'viewBox' => '0 0 16 16'];
+    private array $styles = ['fill' => 'currentColor'];
 
     /**
      * @param Packages $packages Symfony asset package service
      * @param array    $icons    Icons configuration array
      */
-    public function __construct(Packages $packages, $icons)
+    public function __construct(private Packages $packages, private $icons)
     {
-        $this->packages = $packages;
-        $this->icons = $icons;
     }
 
     /**
@@ -84,7 +80,7 @@ class SVGIcon
         if (true === $this->icons[$package]['webpack']) {
             // getUrl returns the public URL of the asset, we only want the filename
             //
-            $filename = $baseDir.'/'.$iconDir.'/'.basename($this->packages->getUrl($icon));
+            $filename = $baseDir.'/'.$iconDir.'/'.basename((string) $this->packages->getUrl($icon));
         } else {
             $filename = $baseDir.'/'.$icon;
         }

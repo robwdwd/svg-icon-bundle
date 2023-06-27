@@ -28,14 +28,11 @@ use Twig\Extension\RuntimeExtensionInterface;
  */
 class SVGIconRuntime implements RuntimeExtensionInterface
 {
-    private $svgIcon;
-
     /**
      * @param SVGIcon $svgIcon SVGIcon service from this bundle
      */
-    public function __construct(SVGIcon $svgIcon)
+    public function __construct(private readonly SVGIcon $svgIcon)
     {
-        $this->svgIcon = $svgIcon;
     }
 
     /**
@@ -52,7 +49,7 @@ class SVGIconRuntime implements RuntimeExtensionInterface
     {
         try {
             $this->svgIcon->loadSVG($package, $iconName, $attributes, $styles);
-        } catch (IconNotFoundException $e) {
+        } catch (IconNotFoundException) {
             return '<svg style="width:24px;height:24px" viewBox="0 0 24 24">
                         <path fill="currentColor" d="M13 14H11V9H13M13 18H11V16H13M1 21H23L12 2L1 21Z" />
                     </svg>';
