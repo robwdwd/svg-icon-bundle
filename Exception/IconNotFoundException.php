@@ -24,7 +24,7 @@ use Exception;
  *
  * @author Rob Woodward <rob@emailplus.org>
  */
-class IconNotFoundException extends \Exception
+class IconNotFoundException extends Exception
 {
     public function __construct(string $package, string $name, string $filename)
     {
