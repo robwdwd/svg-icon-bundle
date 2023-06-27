@@ -34,6 +34,7 @@ class SVGIcon
     // Set up some default attributes
     //
     private array $attributes = ['width' => 16, 'height' => 16, 'viewBox' => '0 0 16 16'];
+
     private array $styles = ['fill' => 'currentColor'];
 
     /**
