@@ -1,6 +1,6 @@
 <?php
 /**
- *    Copyright 2021-2024 Robert Woodward.
+ *   Copyright 2021-2024 Robert Woodward.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -15,25 +15,15 @@
  *    limitations under the License.
  */
 
-namespace Robwdwd\SVGIconBundle\Twig\Extension;
+namespace Robwdwd\SVGIconBundle\Exception;
 
-use Twig\Extension\AbstractExtension;
-use Twig\TwigFunction;
+use Exception;
 
 /**
- * SVG Icon Twig extension.
+ * SVG Icon Exception.
  *
  * @author Rob Woodward <rob@twfmail.uk>
  */
-class SVGIconExtension extends AbstractExtension
+class SVGIconException extends Exception
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function getFunctions(): array
-    {
-        return [
-            new TwigFunction('svg_icon', [SVGIconRuntime::class, 'inlineHTML'], ['is_safe' => ['html']]),
-        ];
-    }
 }

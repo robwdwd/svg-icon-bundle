@@ -18,6 +18,9 @@
 namespace Robwdwd\SVGIconBundle;
 
 use Robwdwd\SVGIconBundle\Exception\IconNotFoundException;
+use Robwdwd\SVGIconBundle\Exception\IconPackageNotFoundException;
+use Robwdwd\SVGIconBundle\Exception\SVGIconException;
+use RuntimeException;
 use SVG\Reading\AttributeRegistry;
 use SVG\SVG;
 use Symfony\Component\Asset\Packages;
@@ -29,7 +32,7 @@ use Symfony\Component\Asset\Packages;
  */
 class SVGIcon
 {
-    private ?SVG $svgImage = null;
+    private SVG $svgImage;
 
     // Set up some default attributes
     //
@@ -41,7 +44,7 @@ class SVGIcon
      * @param Packages $packages Symfony asset package service
      * @param array    $icons    Icons configuration array
      */
-    public function __construct(private readonly Packages $packages, private $icons)
+    public function __construct(private readonly Packages $packages, private array $icons)
     {
     }
 
@@ -53,10 +56,10 @@ class SVGIcon
      * @param array  $attributes optional attributes to add to the SVG tag
      * @param array  $styles     optional styles to add to the SVG tag
      */
-    public function loadSVG($package, $name, $attributes = [], $styles = [])
+    public function loadSVG(string $package, string $name, array $attributes = [], array $styles = []): void
     {
         if (!isset($this->icons[$package])) {
-            return;
+            throw new IconPackageNotFoundException(sprintf("Icon package '%s' not found", $package));
         }
 
         // Find out where the icon is on the filesystem.
@@ -89,7 +92,12 @@ class SVGIcon
         if (file_exists($filename)) {
             // Load the image from the file.
             //
-            $this->svgImage = SVG::fromFile($filename);
+
+            try {
+                $this->svgImage = SVG::fromFile($filename);
+            } catch (RuntimeException $e) {
+                throw new SVGIconException($e, 0, $e);
+            }
 
             // Get the svg document node, get all the generated attributes and styles
             // and finally merge in these with defaults and user overides.
@@ -110,13 +118,11 @@ class SVGIcon
      *
      * @param bool $inclXMLHeader include XML header in output
      *
-     * @return string|null HTML Markup for SVG Icon
+     * @return string HTML Markup for SVG Icon
      */
-    public function toXMLString($inclXMLHeader = false)
+    public function toXMLString(bool $inclXMLHeader = false): string
     {
-        if ($this->svgImage) {
-            return $this->svgImage->toXMLString($inclXMLHeader);
-        }
+        return $this->svgImage->toXMLString($inclXMLHeader);
     }
 
     /**
@@ -124,11 +130,8 @@ class SVGIcon
      *
      * @param array $styles Additional styles to add to the svg tag
      */
-    public function setStyles(array $styles)
+    public function setStyles(array $styles): void
     {
-        if (!$this->svgImage) {
-            return;
-        }
         $doc = $this->svgImage->getDocument();
         foreach ($styles as $tag => $value) {
             $doc->setStyle($tag, $value);
@@ -140,12 +143,8 @@ class SVGIcon
      *
      * @param array $attributes Additional attributes to add to the svg tag
      */
-    public function setAttributes(array $attributes)
+    public function setAttributes(array $attributes): void
     {
-        if (!$this->svgImage) {
-            return;
-        }
-
         $doc = $this->svgImage->getDocument();
         foreach ($attributes as $tag => $value) {
             if ('style' === $tag) {

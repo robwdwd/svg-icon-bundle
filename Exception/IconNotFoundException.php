@@ -24,10 +24,17 @@ use Exception;
  *
  * @author Rob Woodward <rob@twfmail.uk>
  */
-class IconNotFoundException extends Exception
+class IconNotFoundException extends SVGIconException
 {
+    /**
+     * Constructor.
+     *
+     * @param string $package  Icon package name
+     * @param string $name     Name of icon
+     * @param string $filename Calculated icon filename
+     */
     public function __construct(string $package, string $name, string $filename)
     {
-        parent::__construct(\sprintf('Could not find icon file for "%s" in "%s" package, path calculated as "%s".', $name, $package, $filename));
+        parent::__construct(\sprintf('Could not find icon file for "%s" in "%s" package, path calculated as "%s"', $name, $package, $filename));
     }
 }
