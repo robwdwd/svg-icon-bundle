@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<ruleset name="PHP_CodeSniffer">
+
+    <description>PHP Code Sniffer configuration file.</description>
+
+    <file>src</file>
+
+    <!-- Our base rule: set to Symfony-->
+    <rule ref="Symfony">
+        <exclude name="Symfony.Commenting.License.Warning"/>
+        <exclude name="Symfony.Commenting.FunctionComment.MissingReturn"/>
+        <exclude name="Symfony.Functions.Arguments.Invalid"/>
+        <exclude name="Symfony.Commenting.FunctionComment.MissingParamComment"/>
+    </rule>
+
+</ruleset>
