@@ -1,6 +1,6 @@
 <?php
 /**
- *     Copyright 2021 Robert Woodward.
+ *    Copyright 2021-2024 Robert Woodward.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ use Twig\TwigFunction;
 /**
  * SVG Icon Twig extension.
  *
- * @author Rob Woodward <rob@emailplus.org>
+ * @author Rob Woodward <rob@twfmail.uk>
  */
 class SVGIconExtension extends AbstractExtension
 {

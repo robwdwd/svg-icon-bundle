@@ -1,6 +1,6 @@
 <?php
 /**
- *     Copyright 2021 Robert Woodward.
+ *    Copyright 2021-2024 Robert Woodward.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ use Twig\Extension\RuntimeExtensionInterface;
 /**
  * SVG Icon bundle twig runtime extension.
  *
- * @author Rob Woodward <rob@emailplus.org>
+ * @author Rob Woodward <rob@twfmail.uk>
  */
 class SVGIconRuntime implements RuntimeExtensionInterface
 {

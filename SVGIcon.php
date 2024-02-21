@@ -1,6 +1,6 @@
 <?php
 /**
- *     Copyright 2021 Robert Woodward.
+ *    Copyright 2021-2024 Robert Woodward.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ use Symfony\Component\Asset\Packages;
 /**
  * SVG Icon service to read files and output HTML Markup.
  *
- * @author Rob Woodward <rob@emailplus.org>
+ * @author Rob Woodward <rob@twfmail.uk>
  */
 class SVGIcon
 {

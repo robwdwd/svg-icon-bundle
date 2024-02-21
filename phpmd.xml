@@ -5,21 +5,36 @@
     <description>
         PHP MD ruleset related to this project.
     </description>
-    <rule ref="rulesets/codesize.xml/ExcessiveParameterList" />
+    <rule ref="rulesets/codesize.xml/ExcessiveParameterList"/>
     <rule ref="rulesets/unusedcode.xml"/>
     <rule ref="rulesets/naming.xml">
-        <exclude name="ShortVariable" />
+        <exclude name="ShortVariable"/>
+        <exclude name="LongVariable"/>
     </rule>
-    <rule ref="rulesets/design.xml"/>
+    <rule ref="rulesets/design.xml">
+        <exclude name="CouplingBetweenObjects"/>
+    </rule>
     <rule ref="rulesets/cleancode.xml">
         <exclude name="BooleanArgumentFlag"/>
         <exclude name="ElseExpression"/>
+        <exclude name="StaticAccess"/>
     </rule>
     <rule ref="rulesets/controversial.xml"/>
     <rule ref="rulesets/naming.xml/ShortVariable">
         <properties>
             <property name="exceptions">
                 <value>id</value>
+                <value>ix</value>
+                <value>os</value>
+                <value>cc</value>
+                <value>to</value>
+            </property>
+        </properties>
+    </rule>
+    <rule ref="rulesets/naming.xml/LongVariable">
+        <properties>
+            <property name="maximum">
+                <value>40</value>
             </property>
         </properties>
     </rule>
