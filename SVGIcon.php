@@ -89,28 +89,27 @@ class SVGIcon
             $filename = $baseDir.'/'.$icon;
         }
 
-        if (file_exists($filename)) {
-            // Load the image from the file.
-            //
-
-            try {
-                $this->svgImage = SVG::fromFile($filename);
-            } catch (RuntimeException $e) {
-                throw new SVGIconException($e, 0, $e);
-            }
-
-            // Get the svg document node, get all the generated attributes and styles
-            // and finally merge in these with defaults and user overides.
-            //
-            $document = $this->svgImage->getDocument();
-            $iconAttr = array_merge($this->attributes, $document->getSerializableAttributes(), $dimensions, $attributes);
-            $iconStyles = array_merge($this->styles, $document->getSerializableStyles(), $styles);
-
-            $this->setAttributes($iconAttr);
-            $this->setStyles($iconStyles);
-        } else {
+        if (!file_exists($filename)) {
             throw new IconNotFoundException($package, $name, $filename);
         }
+
+        // Load the image from the file.
+        //
+        try {
+            $this->svgImage = SVG::fromFile($filename);
+        } catch (RuntimeException $runtimeException) {
+            throw new SVGIconException('Unable to parse svg icon file', 0, $runtimeException);
+        }
+
+        // Get the svg document node, get all the generated attributes and styles
+        // and finally merge in these with defaults and user overides.
+        //
+        $document = $this->svgImage->getDocument();
+        $iconAttr = array_merge($this->attributes, $document->getSerializableAttributes(), $dimensions, $attributes);
+        $iconStyles = array_merge($this->styles, $document->getSerializableStyles(), $styles);
+
+        $this->setAttributes($iconAttr);
+        $this->setStyles($iconStyles);
     }
 
     /**
@@ -150,6 +149,7 @@ class SVGIcon
             if ('style' === $tag) {
                 continue;
             }
+
             if (AttributeRegistry::isStyle($tag)) {
                 $convertedValue = AttributeRegistry::convertStyleAttribute($tag, $value);
                 $doc->setStyle($tag, $convertedValue);
