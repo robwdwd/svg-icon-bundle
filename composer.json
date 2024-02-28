@@ -33,7 +33,6 @@
         "symfony/asset": ">=6.0"
     },
     "require-dev": {
-        "symfony/templating": ">=6.0",
         "rector/rector": "^1.0.1"
     }
 }
