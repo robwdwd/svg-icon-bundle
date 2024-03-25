@@ -32,7 +32,7 @@ use Symfony\Component\Asset\Packages;
  */
 class SVGIcon
 {
-    private SVG $svgImage;
+    private SVG $svg;
 
     // Set up some default attributes
     //
@@ -96,7 +96,7 @@ class SVGIcon
         // Load the image from the file.
         //
         try {
-            $this->svgImage = SVG::fromFile($filename);
+            $this->svg = SVG::fromFile($filename);
         } catch (RuntimeException $runtimeException) {
             throw new SVGIconException('Unable to parse svg icon file', 0, $runtimeException);
         }
@@ -104,7 +104,7 @@ class SVGIcon
         // Get the svg document node, get all the generated attributes and styles
         // and finally merge in these with defaults and user overides.
         //
-        $document = $this->svgImage->getDocument();
+        $document = $this->svg->getDocument();
         $iconAttr = array_merge($this->attributes, $document->getSerializableAttributes(), $dimensions, $attributes);
         $iconStyles = array_merge($this->styles, $document->getSerializableStyles(), $styles);
 
@@ -121,7 +121,7 @@ class SVGIcon
      */
     public function toXMLString(bool $inclXMLHeader = false): string
     {
-        return $this->svgImage->toXMLString($inclXMLHeader);
+        return $this->svg->toXMLString($inclXMLHeader);
     }
 
     /**
@@ -131,7 +131,7 @@ class SVGIcon
      */
     public function setStyles(array $styles): void
     {
-        $doc = $this->svgImage->getDocument();
+        $doc = $this->svg->getDocument();
         foreach ($styles as $tag => $value) {
             $doc->setStyle($tag, $value);
         }
@@ -144,7 +144,7 @@ class SVGIcon
      */
     public function setAttributes(array $attributes): void
     {
-        $doc = $this->svgImage->getDocument();
+        $doc = $this->svg->getDocument();
         foreach ($attributes as $tag => $value) {
             if ('style' === $tag) {
                 continue;

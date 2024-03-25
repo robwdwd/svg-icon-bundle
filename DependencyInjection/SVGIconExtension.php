@@ -33,19 +33,19 @@ class SVGIconExtension extends Extension
     /**
      * {@inheritdoc}
      */
-    public function load(array $configs, ContainerBuilder $container): void
+    public function load(array $configs, ContainerBuilder $containerBuilder): void
     {
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
-        $loader->load('services.xml');
+        $xmlFileLoader = new XmlFileLoader($containerBuilder, new FileLocator(__DIR__ . '/../Resources/config'));
+        $xmlFileLoader->load('services.xml');
 
         if (class_exists(AbstractExtension::class)) {
-            $loader->load('twig.xml');
+            $xmlFileLoader->load('twig.xml');
         }
 
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $definition = $container->getDefinition('svg_icon.svg_icon');
+        $definition = $containerBuilder->getDefinition('svg_icon.svg_icon');
         $definition->setArgument(1, $config['icons']);
     }
 }
