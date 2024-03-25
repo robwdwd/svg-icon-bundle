@@ -67,7 +67,7 @@ class SVGIcon
         $baseDir = $this->icons[$package]['base_dir'];
         $iconDir = $this->icons[$package]['icon_dir'];
 
-        $icon = $iconDir.'/'.$name.'.svg';
+        $icon = $iconDir . '/' . $name . '.svg';
 
         // If config includes user override width and height
         //
@@ -84,9 +84,9 @@ class SVGIcon
         if (true === $this->icons[$package]['webpack']) {
             // getUrl returns the public URL of the asset, we only want the filename
             //
-            $filename = $baseDir.'/'.$iconDir.'/'.basename((string) $this->packages->getUrl($icon));
+            $filename = $baseDir . '/' . $iconDir . '/' . basename((string) $this->packages->getUrl($icon));
         } else {
-            $filename = $baseDir.'/'.$icon;
+            $filename = $baseDir . '/' . $icon;
         }
 
         if (!file_exists($filename)) {

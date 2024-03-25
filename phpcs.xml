@@ -6,12 +6,16 @@
 
     <file>src</file>
 
-    <!-- Our base rule: set to Symfony-->
-    <rule ref="Symfony">
-        <exclude name="Symfony.Commenting.License.Warning"/>
-        <exclude name="Symfony.Commenting.FunctionComment.MissingReturn"/>
-        <exclude name="Symfony.Functions.Arguments.Invalid"/>
-        <exclude name="Symfony.Commenting.FunctionComment.MissingParamComment"/>
+    <!-- Our base rule: set to PSR12-->
+    <rule ref="PSR12">
+
+    </rule>
+
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="160" />
+            <property name="absoluteLineLimit" value="200" />
+        </properties>
     </rule>
 
 </ruleset>
