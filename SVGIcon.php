@@ -84,7 +84,7 @@ class SVGIcon
         if (true === $this->icons[$package]['webpack']) {
             // getUrl returns the public URL of the asset, we only want the filename
             //
-            $filename = $baseDir . '/' . $iconDir . '/' . basename((string) $this->packages->getUrl($icon));
+            $filename = $baseDir . '/' . $iconDir . '/' . basename($this->packages->getUrl($icon));
         } else {
             $filename = $baseDir . '/' . $icon;
         }
@@ -131,9 +131,9 @@ class SVGIcon
      */
     public function setStyles(array $styles): void
     {
-        $doc = $this->svg->getDocument();
+        $svgDocumentFragment = $this->svg->getDocument();
         foreach ($styles as $tag => $value) {
-            $doc->setStyle($tag, $value);
+            $svgDocumentFragment->setStyle($tag, $value);
         }
     }
 
@@ -144,7 +144,7 @@ class SVGIcon
      */
     public function setAttributes(array $attributes): void
     {
-        $doc = $this->svg->getDocument();
+        $svgDocumentFragment = $this->svg->getDocument();
         foreach ($attributes as $tag => $value) {
             if ('style' === $tag) {
                 continue;
@@ -152,11 +152,11 @@ class SVGIcon
 
             if (AttributeRegistry::isStyle($tag)) {
                 $convertedValue = AttributeRegistry::convertStyleAttribute($tag, $value);
-                $doc->setStyle($tag, $convertedValue);
+                $svgDocumentFragment->setStyle($tag, $convertedValue);
                 continue;
             }
 
-            $doc->setAttribute($tag, $value);
+            $svgDocumentFragment->setAttribute($tag, $value);
         }
     }
 }
