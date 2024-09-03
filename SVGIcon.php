@@ -104,9 +104,9 @@ class SVGIcon
         // Get the svg document node, get all the generated attributes and styles
         // and finally merge in these with defaults and user overides.
         //
-        $document = $this->svg->getDocument();
-        $iconAttr = array_merge($this->attributes, $document->getSerializableAttributes(), $dimensions, $attributes);
-        $iconStyles = array_merge($this->styles, $document->getSerializableStyles(), $styles);
+        $svgDocumentFragment = $this->svg->getDocument();
+        $iconAttr = array_merge($this->attributes, $svgDocumentFragment->getSerializableAttributes(), $dimensions, $attributes);
+        $iconStyles = array_merge($this->styles, $svgDocumentFragment->getSerializableStyles(), $styles);
 
         $this->setAttributes($iconAttr);
         $this->setStyles($iconStyles);

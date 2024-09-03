@@ -33,9 +33,9 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('svg_icon');
-        $rootNode = $treeBuilder->getRootNode();
+        $nodeDefinition = $treeBuilder->getRootNode();
 
-        $rootNode
+        $nodeDefinition
             ->children()
             ->arrayNode('icons')
             ->info('List of icon packs.')

@@ -4,8 +4,19 @@ use Rector\Config\RectorConfig;
 
 return RectorConfig::configure()
     ->withPhpSets()
-    ->withPreparedSets(codeQuality: true, codingStyle: true, typeDeclarations: true, naming: true, deadCode: true)
+    ->withPreparedSets(
+        deadCode: true,
+        codeQuality: true,
+        codingStyle: true,
+        typeDeclarations: true,
+        privatization: false,
+        naming: true,
+        instanceOf: true,
+        earlyReturn: false,
+        strictBooleans: false,
+    )
     ->withAttributesSets(symfony: true)
+    ->withImportNames()
     ->withSkip([
         __DIR__ . '/vendor',
     ])
